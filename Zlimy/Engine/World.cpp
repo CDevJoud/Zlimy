@@ -24,13 +24,19 @@ namespace IExtreme::Engine::Ugr
             {
                 if (e.second->ID != target.second->ID)
                 {
-                    if (target.second->GetHitBox()->CheckIntersectionWith(e.second->GetHitBox()))
+                    if (target.second->GetProprety() == Entity::Proprety::Static)
+                        target.second->GetHitBox()->pushStrength = 0.0f;
+                    else
+                        target.second->GetHitBox()->pushStrength = 0.0f;
+                    if (target.second->GetHitBox()->CheckIntersectionWith(e.second->GetHitBox(), 1.0f, dt))
                     {
                         target.second->UpdatePollGravitation = false;
                         target.second->IsCollidingToGround = true;
+                        target.second->GetHitBox()->IsCollidingFromTop = true;
                     }
                     else
                     {
+                        target.second->GetHitBox()->IsCollidingFromTop = false;
                         target.second->UpdatePollGravitation = true;
                         target.second->IsCollidingToGround = false;
                     }

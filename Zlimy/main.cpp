@@ -4,9 +4,7 @@ using namespace IExtreme::Engine;
 
 int main()
 {
-
-	Ugr::Engine e; e.run();
-	return 0;
+	Ugr::Engine e; e.run(); return 0;
 	sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "");
 	sf::Event event{};
 	sf::RectangleShape shape(sf::Vector2f(100, 100));
@@ -21,6 +19,7 @@ int main()
 	sf::Vector2f velocity;
 	while (window.isOpen())
 	{
+		std::cout << shape.getGlobalBounds().width << std::endl;
 		dt = clock.restart().asSeconds();
 		while (window.pollEvent(event))
 		{

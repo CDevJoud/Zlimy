@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "logger.h"
 namespace IExtreme::Engine::Ugr
 {
 	class HitBox : public sf::Drawable
@@ -25,9 +26,16 @@ namespace IExtreme::Engine::Ugr
 		void Move(sf::Vector2f offset);
 		void Move(float offsetx, float offsety);
 
-		bool CheckIntersectionWith(HitBox* box);
+		bool CheckIntersectionWith(HitBox* box, float pushStrength, const sf::Time& dt);
 		sf::FloatRect getGlobalBounds() const;
+
+		bool IsCollidingFromTop = false;
+		bool IsCollidingFromBottom = false;
+		bool IsCollidingFromLeft = false;
+		bool IsCollidingFromRight = false;
+		friend class World;
 	private:
 		sf::RectangleShape shape;
+		float pushStrength = 0.0f;
 	};
 }
