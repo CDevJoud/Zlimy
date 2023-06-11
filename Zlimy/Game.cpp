@@ -23,7 +23,7 @@ namespace IExtreme::Application::TWarior
 			if (player1->IsCollidingToGround)
 			{
 				// Apply jump velocity
-				player1->SetVelocity(0, -25000);
+				player1->SetVelocity(0, -500);
 			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))

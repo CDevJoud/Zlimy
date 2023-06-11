@@ -26,7 +26,6 @@ namespace IExtreme::Engine::Ugr
                 {
                     if (target.second->GetHitBox()->CheckIntersectionWith(e.second->GetHitBox()))
                     {
-                        target.second->pVelocity.y = 0;
                         target.second->UpdatePollGravitation = false;
                         target.second->IsCollidingToGround = true;
                     }

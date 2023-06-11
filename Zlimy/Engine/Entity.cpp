@@ -143,11 +143,11 @@ namespace IExtreme::Engine::Ugr
 	}
 	void Entity::SetVelocity(sf::Vector2f vel)
 	{
-		this->gVelocity = vel;
+		this->velocity = vel;
 	}
 	void Entity::SetVelocity(float x, float y)
 	{
-		this->gVelocity = { x, y };
+		this->velocity = { x, y };
 	}
 	Entity::Proprety Entity::GetProprety() const
 	{
@@ -195,22 +195,17 @@ namespace IExtreme::Engine::Ugr
 	{		
 		if (this->prop == Proprety::Dynamic && this->UpdatePollGravitation)
 		{
-			this->gVelocity.y += 500.82f * dt.asSeconds();
+			this->velocity.y += 500.82f * dt.asSeconds();
 			sf::Vector2f position = this->GetPosition();
-			position += this->gVelocity * dt.asSeconds();
-			std::string str = "X: " + std::to_string(position.x) + " Y: " + std::to_string(position.y);
-			Logger::Debug(str.c_str());
+			position += this->velocity * dt.asSeconds();
 			this->SetPosition(position);
 		}
 		else if(this->prop == Proprety::Dynamic)
 		{
 			sf::Vector2f sposition = this->GetPosition();
-			sposition += this->gVelocity * dt.asSeconds();
+			sposition += this->velocity * dt.asSeconds();
 			this->SetPosition(sposition);
-
-			std::string str = "X: " + std::to_string(sposition.x) + " Y: " + std::to_string(sposition.y);
-			Logger::Info(str.c_str());
-			this->gVelocity = sf::Vector2f(0, 0);
+			this->velocity = sf::Vector2f(0, 0);
 		}
 	}
 	HitBox* Entity::GetHitBox()
@@ -223,6 +218,6 @@ namespace IExtreme::Engine::Ugr
 	}
 	sf::Vector2f Entity::GetVelocity() const
 	{
-		return this->gVelocity;
+		return this->velocity;
 	}
 }
