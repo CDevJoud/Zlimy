@@ -6,6 +6,7 @@
 #include "logger.h"
 #include "..\Game.h"
 #include "SFML/GpuPreference.hpp"
+#include "SFML/System/Err.hpp"
 
 #define NULLSIZE 459
 namespace IExtreme::Engine::Ugr

@@ -99,7 +99,7 @@ namespace IExtreme::Engine::Ugr
 		template<typename... Args>
 		static void Info(const char* msg, Args... args)
 		{
-			getInstance().log("[Info]    : ", LogPriority::Info, msg, args...);
+			getInstance().log("[Info]     : ", LogPriority::Info, msg, args...);
 		}
 
 		template<typename... Args>
@@ -111,7 +111,7 @@ namespace IExtreme::Engine::Ugr
 		template<typename... Args>
 		static void Warn(const char* msg, Args... args)
 		{
-			getInstance().log("[Warn]    : ", LogPriority::Warn, msg, args...);
+			getInstance().log("[Warn]     : ", LogPriority::Warn, msg, args...);
 		}
 
 		template<typename... Args>
@@ -160,18 +160,19 @@ namespace IExtreme::Engine::Ugr
 					Color::SetColor(0x06);
 					break;
 				case IExtreme::Engine::Ugr::Logger::LogPriority::Info:
-					Color::Color(L"| ! | -- ", 0x09);
+					Color::Color(L"| !  | -- ", 0x09);
 					Color::SetColor(0x09);
 					break;
 				case IExtreme::Engine::Ugr::Logger::LogPriority::Warn:
-
+					Color::Color(L"| \x274C | -- ", 0x0E);
+					Color::SetColor(0x0E);
 					break;
 				case IExtreme::Engine::Ugr::Logger::LogPriority::Error:
-					Color::Color(L"|{X}| -- ", 0x04);
+					Color::Color(L"| \x00D7 | -- ", 0x04);
 					Color::SetColor(0x04);
 					break;
 				case IExtreme::Engine::Ugr::Logger::LogPriority::Fatal:
-					Color::Color(L"|{X}| -- ", 0xC4);
+					Color::Color(L"| \x2716 | -- ", 0xC4);
 					Color::SetColor(0xC4);
 					break;
 				default:

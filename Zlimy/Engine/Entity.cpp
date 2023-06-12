@@ -81,6 +81,7 @@ namespace IExtreme::Engine::Ugr
 	{
 		Logger::Debug("Setting Up An Entity!");
 		this->texture = new sf::Texture();
+		Logger::Warn("There is no available texture Applying a default one!");
 		Logger::Debug("Setting Up A default texture to Insure if there is no texture is loaded!");
 		this->texture->loadFromMemory(this->NullData, NULLSIZE);
 		Logger::Debug("Applying Texture To Sprite");
@@ -106,6 +107,24 @@ namespace IExtreme::Engine::Ugr
 	{
 		target.draw(this->sprite);
 		target.draw(this->hitBox);
+	}
+	bool Entity::LoadTexture(std::string file)
+	{
+		std::string str = "Loading File: " + file;
+		Logger::Info(str.c_str());
+		if (!this->texture->loadFromFile(file))
+		{
+			Logger::Error("File Could not be load!\n\tmake sure you typed the directory correct or the name of the file correct!");
+			return false;
+		}
+		this->sprite.setTexture(*this->texture);
+		sf::Vector2u size = this->texture->getSize();
+		this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+		this->hitBox.SetHitBoxSize(size.x, size.y);
+		this->hitBox.SetHitBoxThickness(3);
+		
+		this->hitBox.SetHitBoxDye(sf::Color::Yellow);
+		return true;
 	}
 	void Entity::SetPosition(sf::Vector2f pos)
 	{

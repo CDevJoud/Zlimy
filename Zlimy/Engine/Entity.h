@@ -104,6 +104,9 @@ namespace IExtreme::Engine::Ugr
 
 		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+		bool LoadTexture(std::string file);
+
+
 		void SetPosition(sf::Vector2f pos);
 		void SetPosition(float x, float y);
 		void SetOrigin(sf::Vector2f org);

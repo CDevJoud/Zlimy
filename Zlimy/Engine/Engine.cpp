@@ -11,6 +11,7 @@ namespace IExtreme::Engine::Ugr
 		sf::ContextSettings s;
 		s.antialiasingLevel = 8;
 		s.attributeFlags = sf::ContextSettings::Attribute::Debug;
+		sf::err().clear(std::ios::failbit);
 
 		this->create(sf::VideoMode::getDesktopMode(), "Warior", sf::Style::Fullscreen, s);
 		

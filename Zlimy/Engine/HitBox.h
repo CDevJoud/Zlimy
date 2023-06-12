@@ -23,6 +23,9 @@ namespace IExtreme::Engine::Ugr
 
 		void SetHitBoxThickness(float thickness);
 		float GetHitBoxThickness() const;
+		
+		void SetOrigin(sf::Vector2f org);
+		void SetOrigin(float x, float y);
 
 		void SetHitBoxDye(sf::Color dye);
 		sf::Color GetHitBoxDye() const;

@@ -29,6 +29,14 @@ namespace IExtreme::Engine::Ugr
 	{
 		return this->shape.getOutlineThickness();
 	}
+	void HitBox::SetOrigin(sf::Vector2f org)
+	{
+		this->shape.setOrigin(org);
+	}
+	void HitBox::SetOrigin(float x, float y)
+	{
+		this->shape.setOrigin(x, y);
+	}
 	void HitBox::SetHitBoxDye(sf::Color dye)
 	{
 		this->shape.setOutlineColor(dye);

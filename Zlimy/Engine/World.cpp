@@ -27,7 +27,7 @@ namespace IExtreme::Engine::Ugr
                     auto prop = target.second->GetProprety();
                     if (prop == Entity::Proprety::Dynamic)
                     {
-                        auto col = target.second->GetHitBox()->CheckIntersectionWith(e.second->GetHitBox();
+                        auto col = target.second->GetHitBox()->CheckIntersectionWith(e.second->GetHitBox());
                         target.second->IsCollidingToGround = col.IsCollidingFromTop;
                         target.second->Update(dt);
                     }

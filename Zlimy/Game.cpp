@@ -7,10 +7,13 @@ namespace IExtreme::Application::TWarior
 		this->player1->ID = Ugr::ID::GenerateID();
 		this->player1->SetProprety(Ugr::Entity::Dynamic);
 		this->player1->SetPosition(1920 * 0.5, 0);
+		this->player1->SetOrigin(this->player1->GetSize() * 0.5f);
 		this->world.AddEntity(this->player1);
 
 		this->player2->ID = Ugr::ID::GenerateID();
 		this->player2->SetPosition(1920 * 0.5, 900);
+		this->player2->LoadTexture("Assets/world/anim_light3.png");
+		this->player2->SetOrigin(this->player2->GetSize() * 0.5f);
 		this->world.AddEntity(this->player2);
 	}
 	void Game::OnUserUpdate(const sf::Time& dt)
