@@ -106,7 +106,8 @@ namespace IExtreme::Engine::Ugr
 
 		bool LoadTexture(std::string file);
 
-
+		void SetSize(sf::Vector2f size);
+		void SetSize(float x, float y);
 		void SetPosition(sf::Vector2f pos);
 		void SetPosition(float x, float y);
 		void SetOrigin(sf::Vector2f org);
@@ -141,13 +142,14 @@ namespace IExtreme::Engine::Ugr
 		friend class World;
 		bool IsCollidingToGround = false;
 	private:
-		sf::Sprite sprite;
+		sf::RectangleShape sprite;
 		sf::Texture* texture;
 		sf::Vector2f velocity;
 		sf::Vector2f reqvelocity;
 		HitBox hitBox;
 		Proprety prop;
 		bool UpdatePollGravitation = true;
+		sf::Image tmpImage;
 	private:
 		sf::Uint8 NullData[NULLSIZE] = {
 	0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00, 0x00, 0x0D,

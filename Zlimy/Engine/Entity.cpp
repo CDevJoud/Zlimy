@@ -85,12 +85,13 @@ namespace IExtreme::Engine::Ugr
 		Logger::Debug("Setting Up A default texture to Insure if there is no texture is loaded!");
 		this->texture->loadFromMemory(this->NullData, NULLSIZE);
 		Logger::Debug("Applying Texture To Sprite");
-		this->sprite.setTexture(*this->texture);
+		this->sprite.setTexture(this->texture);
 		Logger::Debug("Setting Up HitBox");
 		sf::Vector2u size = this->texture->getSize();
 		this->hitBox.SetHitBoxSize(size.x, size.y);
 		this->hitBox.SetHitBoxThickness(3);
 		this->hitBox.SetHitBoxDye(sf::Color::Yellow);
+		this->sprite.setSize(sf::Vector2f(size));
 		Logger::Info("Done!");
 	}
 	Entity::~Entity()
@@ -117,14 +118,25 @@ namespace IExtreme::Engine::Ugr
 			Logger::Error("File Could not be load!\n\tmake sure you typed the directory correct or the name of the file correct!");
 			return false;
 		}
-		this->sprite.setTexture(*this->texture);
+		this->sprite.setTexture(this->texture);
 		sf::Vector2u size = this->texture->getSize();
+		this->sprite.setSize(sf::Vector2f(size));
 		this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
 		this->hitBox.SetHitBoxSize(size.x, size.y);
 		this->hitBox.SetHitBoxThickness(3);
-		
+
 		this->hitBox.SetHitBoxDye(sf::Color::Yellow);
 		return true;
+	}
+	void Entity::SetSize(sf::Vector2f size)
+	{
+		this->sprite.setSize(size);
+		this->hitBox.SetHitBoxSize(size.x, size.y);
+	}
+	void Entity::SetSize(float x, float y)
+	{
+		this->sprite.setSize({ x, y });
+		this->hitBox.SetHitBoxSize(x, y);
 	}
 	void Entity::SetPosition(sf::Vector2f pos)
 	{
@@ -138,18 +150,22 @@ namespace IExtreme::Engine::Ugr
 	}
 	void Entity::SetOrigin(sf::Vector2f org)
 	{
+		this->hitBox.SetOrigin(org);
 		this->sprite.setOrigin(org);
 	}
 	void Entity::SetOrigin(float x, float y)
 	{
+		this->hitBox.SetOrigin(x, y);
 		this->sprite.setOrigin(x, y);
 	}
 	void Entity::SetScale(sf::Vector2f scale)
 	{
+		this->hitBox.SetScale(scale);
 		this->sprite.setScale(scale);
 	}
 	void Entity::SetScale(float x, float y)
 	{
+		this->hitBox.SetScale(x, y);
 		this->sprite.setScale(x, y);
 	}
 	void Entity::SetRotation(float x)
@@ -234,7 +250,7 @@ namespace IExtreme::Engine::Ugr
 	}
 	sf::Vector2f Entity::GetSize() const
 	{
-		return sf::Vector2f(this->texture->getSize());
+		return this->sprite.getSize();
 	}
 	sf::Vector2f Entity::GetVelocity() const
 	{
