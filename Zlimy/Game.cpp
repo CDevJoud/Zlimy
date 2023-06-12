@@ -6,7 +6,7 @@ namespace IExtreme::Application::TWarior
 	{
 		this->player1->ID = Ugr::ID::GenerateID();
 		this->player1->SetProprety(Ugr::Entity::Dynamic);
-		this->player1->SetPosition(1920 * 0.5, 800);
+		this->player1->SetPosition(1920 * 0.5, 0);
 		this->world.AddEntity(this->player1);
 
 		this->player2->ID = Ugr::ID::GenerateID();
@@ -16,21 +16,6 @@ namespace IExtreme::Application::TWarior
 	void Game::OnUserUpdate(const sf::Time& dt)
 	{
 		this->world.Update(dt);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->player1->GetHitBox()->IsCollidingFromTop)
-		{
-			player1->SetVelocity(0, -500);
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		{
-			this->player1->Move(-500*dt.asSeconds(), 0);
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-		{
-			this->player1->SetPosition(this->player1->GetPosition().x, 0);
-			this->player1->SetVelocity(0, 0);
-		}
 	}
 	void Game::Render()
 	{

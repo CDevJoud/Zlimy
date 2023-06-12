@@ -193,20 +193,7 @@ namespace IExtreme::Engine::Ugr
 	}
 	void Entity::Update(const sf::Time& dt)
 	{		
-		if (this->prop == Proprety::Dynamic && this->UpdatePollGravitation)
-		{
-			this->velocity.y += 500.82f * dt.asSeconds();
-			sf::Vector2f position = this->GetPosition();
-			position += this->velocity * dt.asSeconds();
-			this->SetPosition(position);
-		}
-		else if(this->prop == Proprety::Dynamic)
-		{
-			sf::Vector2f sposition = this->GetPosition();
-			sposition += this->velocity * dt.asSeconds();
-			this->SetPosition(sposition);
-			this->velocity = sf::Vector2f(0, 0);
-		}
+		
 	}
 	HitBox* Entity::GetHitBox()
 	{
