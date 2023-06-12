@@ -27,6 +27,11 @@ namespace IExtreme::Engine::Ugr
 		void SetOrigin(sf::Vector2f org);
 		void SetOrigin(float x, float y);
 
+		sf::Vector2f GetOrigin() const;
+
+		void SetScale(sf::Vector2f scale);
+		void SetScale(float x, float y);
+
 		void SetHitBoxDye(sf::Color dye);
 		sf::Color GetHitBoxDye() const;
 

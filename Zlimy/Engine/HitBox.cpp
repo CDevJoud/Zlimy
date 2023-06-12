@@ -37,6 +37,18 @@ namespace IExtreme::Engine::Ugr
 	{
 		this->shape.setOrigin(x, y);
 	}
+	sf::Vector2f HitBox::GetOrigin() const
+	{
+		return this->shape.getOrigin();
+	}
+	void HitBox::SetScale(sf::Vector2f scale)
+	{
+		this->shape.setScale(scale);
+	}
+	void HitBox::SetScale(float x, float y)
+	{
+		this->shape.setScale(x, y);
+	}
 	void HitBox::SetHitBoxDye(sf::Color dye)
 	{
 		this->shape.setOutlineColor(dye);
@@ -70,11 +82,14 @@ namespace IExtreme::Engine::Ugr
 		Collider tmp;
 		auto& e1 = box1;
 		auto e2 = this;
-		sf::Vector2f boxpos1 = sf::Vector2f(box1->getGlobalBounds().left, box1->getGlobalBounds().top);
-		sf::Vector2f boxpos2 = sf::Vector2f(this->getGlobalBounds().left, this->getGlobalBounds().top);
+		sf::Vector2f boxpos1 = sf::Vector2f(e1->getGlobalBounds().left, e1->getGlobalBounds().top);
+		sf::Vector2f boxpos2 = sf::Vector2f(e2->getGlobalBounds().left, e2->getGlobalBounds().top);
 
-		sf::Vector2f boxsize1 = sf::Vector2f(box1->getGlobalBounds().width, box1->getGlobalBounds().height) * 0.5f;
-		sf::Vector2f boxsize2 = sf::Vector2f(this->getGlobalBounds().width, this->getGlobalBounds().height) * 0.5f;
+		sf::Vector2f boxsize1 = sf::Vector2f(e1->getGlobalBounds().width, e1->getGlobalBounds().height) * 0.5f;
+		sf::Vector2f boxsize2 = sf::Vector2f(e2->getGlobalBounds().width, e2->getGlobalBounds().height) * 0.5f;
+
+		boxpos1 += e1->GetOrigin();
+		boxpos2 += e2->GetOrigin();
 
 		float dx = boxpos1.x - boxpos2.x;
 		float dy = boxpos1.y - boxpos2.y;
