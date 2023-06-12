@@ -14,7 +14,7 @@ namespace IExtreme::Engine::Ugr
 		void AddEntity(Box2DEntity* entity);
 		void AddEntity(Entity* entity);
 		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
+		void Clean();
 	private:
 		b2World* world = new b2World(b2Vec2(0, 500.82f));
 		std::map<int, std::unique_ptr<Box2DEntity>> bentities;

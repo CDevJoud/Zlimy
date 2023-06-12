@@ -28,7 +28,7 @@ namespace IExtreme::Engine::Ugr
                     if (prop == Entity::Proprety::Dynamic)
                     {
                         auto col = target.second->GetHitBox()->CheckIntersectionWith(e.second->GetHitBox());
-                        target.second->IsCollidingToGround = col.IsCollidingFromTop;
+                        //target.second->IsCollidingToGround = col.IsCollidingFromTop;
                         target.second->Update(dt);
                     }
                 }
@@ -75,5 +75,10 @@ namespace IExtreme::Engine::Ugr
 
         for (auto& i : this->entities)
             target.draw(*i.second.get());
+    }
+    void World::Clean()
+    {
+        this->bentities.clear();
+        this->entities.clear();
     }
 }
