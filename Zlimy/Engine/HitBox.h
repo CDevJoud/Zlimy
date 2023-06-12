@@ -6,6 +6,15 @@ namespace IExtreme::Engine::Ugr
 	class HitBox : public sf::Drawable
 	{
 	public:
+
+		struct Collider
+		{
+			bool IsCollidingFromTop = false;
+			bool IsCollidingFromBottom = false;
+			bool IsCollidingFromLeft = false;
+			bool IsCollidingFromRight = false;
+		};
+
 		HitBox();
 		HitBox(sf::FloatRect prop);
 		HitBox(sf::Vector2f size, sf::Vector2f pos);
@@ -29,10 +38,7 @@ namespace IExtreme::Engine::Ugr
 		bool CheckIntersectionWith(HitBox* box, float pushStrength, const sf::Time& dt);
 		sf::FloatRect getGlobalBounds() const;
 
-		bool IsCollidingFromTop = false;
-		bool IsCollidingFromBottom = false;
-		bool IsCollidingFromLeft = false;
-		bool IsCollidingFromRight = false;
+
 		friend class World;
 	private:
 		sf::RectangleShape shape;

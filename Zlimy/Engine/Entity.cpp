@@ -143,11 +143,13 @@ namespace IExtreme::Engine::Ugr
 	}
 	void Entity::SetVelocity(sf::Vector2f vel)
 	{
-		this->velocity = vel;
+		//We set the requested velocity and then on Update function we register it
+		this->reqvelocity = vel;
 	}
 	void Entity::SetVelocity(float x, float y)
 	{
-		this->velocity = { x, y };
+		//We set the requested velocity and then on Update function we register it
+		this->reqvelocity = { x, y };
 	}
 	Entity::Proprety Entity::GetProprety() const
 	{
@@ -193,7 +195,16 @@ namespace IExtreme::Engine::Ugr
 	}
 	void Entity::Update(const sf::Time& dt)
 	{		
-		
+		if (this->prop == Entity::Proprety::Dynamic)
+		{
+			this->velocity.y += 500.82 * dt.asSeconds();
+			sf::Vector2f pos = this->GetPosition();
+			if (reqvelocity.x != 0 || reqvelocity.y != 0)
+				velocity = reqvelocity;
+			pos += velocity * dt.asSeconds();
+			this->SetPosition(pos);
+			reqvelocity = sf::Vector2f(0, 0);
+		}
 	}
 	HitBox* Entity::GetHitBox()
 	{

@@ -24,7 +24,11 @@ namespace IExtreme::Engine::Ugr
             {
                 if (e.second->ID != target.second->ID)
                 {
-                    
+                    if (target.second->GetHitBox()->CheckIntersectionWith(e.second->GetHitBox(), .5, dt))
+                    {
+                        
+                    }
+                    target.second->Update(dt);
                 }
             }
         }

@@ -141,6 +141,7 @@ namespace IExtreme::Engine::Ugr
 		sf::Sprite sprite;
 		sf::Texture* texture;
 		sf::Vector2f velocity;
+		sf::Vector2f reqvelocity;
 		HitBox hitBox;
 		Proprety prop;
 		bool UpdatePollGravitation = true;

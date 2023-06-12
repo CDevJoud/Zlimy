@@ -15,6 +15,8 @@ namespace IExtreme::Application::TWarior
 	}
 	void Game::OnUserUpdate(const sf::Time& dt)
 	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) 
+			this->player1->SetVelocity(0, -500);
 		this->world.Update(dt);
 	}
 	void Game::Render()

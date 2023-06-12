@@ -29,7 +29,7 @@ Collider CheckCollider(sf::RectangleShape& e1, sf::RectangleShape& e2, float pus
 
 int main()
 {
-	/*Ugr::Engine e; e.run(); return 0;*/
+	Ugr::Engine e; e.run(); return 0;
 	InitGame();
 	StartGame();
 }
