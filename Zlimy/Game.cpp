@@ -16,7 +16,14 @@ namespace IExtreme::Application::TWarior
 	void Game::OnUserUpdate(const sf::Time& dt)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) 
-			this->player1->SetVelocity(0, -500);
+ 			this->player1->SetVelocity(0, -500);
+
+		auto& col = this->player1->GetHitBox()->collider;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) this->player1->Move(-500 * dt.asSeconds(), 0);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) this->player1->Move( 500 * dt.asSeconds(), 0);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) this->player1->Move(0, -500 * dt.asSeconds());
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !col.IsCollidingFromTop) this->player1->Move( 0, 500 * dt.asSeconds());
 		this->world.Update(dt);
 	}
 	void Game::Render()

@@ -194,17 +194,20 @@ namespace IExtreme::Engine::Ugr
 		this->sprite.setScale(x, y);
 	}
 	void Entity::Update(const sf::Time& dt)
-	{		
-		if (this->prop == Entity::Proprety::Dynamic)
-		{
-			this->velocity.y += 500.82 * dt.asSeconds();
-			sf::Vector2f pos = this->GetPosition();
-			if (reqvelocity.x != 0 || reqvelocity.y != 0)
-				velocity = reqvelocity;
-			pos += velocity * dt.asSeconds();
-			this->SetPosition(pos);
-			reqvelocity = sf::Vector2f(0, 0);
-		}
+	{
+		this->velocity.y += 500.82 * dt.asSeconds();
+		sf::Vector2f pos = this->GetPosition();
+
+		if (hitBox.collider.IsCollidingFromTop)
+			velocity.y = 0;
+
+		if (reqvelocity.x != 0 || reqvelocity.y != 0)
+			velocity = reqvelocity;
+
+		pos += velocity * dt.asSeconds();
+
+		this->SetPosition(pos);
+		reqvelocity = sf::Vector2f(0, 0);
 	}
 	HitBox* Entity::GetHitBox()
 	{

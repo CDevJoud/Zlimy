@@ -57,10 +57,60 @@ namespace IExtreme::Engine::Ugr
 	{
 		this->shape.move(offsetx, offsety);
 	}
-	bool HitBox::CheckIntersectionWith(HitBox* box, float pushStrength, const sf::Time& dt)
+	HitBox::Collider HitBox::CheckIntersectionWith(HitBox* box1)
 	{
-		bool intersection = this->shape.getGlobalBounds().intersects(box->getGlobalBounds());
-		return intersection;
+		Collider tmp;
+		auto& e1 = box1;
+		auto e2 = this;
+		sf::Vector2f boxpos1 = sf::Vector2f(box1->getGlobalBounds().left, box1->getGlobalBounds().top);
+		sf::Vector2f boxpos2 = sf::Vector2f(this->getGlobalBounds().left, this->getGlobalBounds().top);
+
+		sf::Vector2f boxsize1 = sf::Vector2f(box1->getGlobalBounds().width, box1->getGlobalBounds().height) * 0.5f;
+		sf::Vector2f boxsize2 = sf::Vector2f(this->getGlobalBounds().width, this->getGlobalBounds().height) * 0.5f;
+
+		float dx = boxpos1.x - boxpos2.x;
+		float dy = boxpos1.y - boxpos2.y;
+
+		float inx = abs(dx) - (boxsize1.x + boxsize2.x);
+		float iny = abs(dy) - (boxsize1.y + boxsize2.y);
+
+		if (inx < 0.0f && iny < 0.0f)
+		{
+			if (inx > iny)
+			{
+				if (dx < 0.0f)
+				{
+					tmp.IsCollidingFromLeft = true;
+				}
+				else
+					tmp.IsCollidingFromLeft = false;
+
+				if (dx > 0.0f)
+				{
+					tmp.IsCollidingFromRight = true;
+				}
+				else
+					tmp.IsCollidingFromRight = false;
+			}
+			else
+			{
+				if (dy > 0.0f)
+				{
+					tmp.IsCollidingFromTop = true;
+				}
+				else
+					tmp.IsCollidingFromTop = false;
+
+				if (dy < 0.0f)
+				{
+					tmp.IsCollidingFromBottom = true;
+				}
+				else
+					tmp.IsCollidingFromBottom = false;
+			}
+		}
+		this->collider = tmp;
+		return tmp;
 	}
 	sf::FloatRect HitBox::getGlobalBounds() const
 	{

@@ -24,11 +24,13 @@ namespace IExtreme::Engine::Ugr
             {
                 if (e.second->ID != target.second->ID)
                 {
-                    if (target.second->GetHitBox()->CheckIntersectionWith(e.second->GetHitBox(), .5, dt))
+                    auto prop = target.second->GetProprety();
+                    if (prop == Entity::Proprety::Dynamic)
                     {
-                        
+                        auto col = target.second->GetHitBox()->CheckIntersectionWith(e.second->GetHitBox();
+                        target.second->IsCollidingToGround = col.IsCollidingFromTop;
+                        target.second->Update(dt);
                     }
-                    target.second->Update(dt);
                 }
             }
         }

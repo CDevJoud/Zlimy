@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Engine/Engine.h"
+SFML_DEFINE_DISCRETE_GPU_PREFERENCE
 
 using namespace IExtreme::Engine;
 

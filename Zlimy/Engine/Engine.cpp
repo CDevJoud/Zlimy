@@ -28,7 +28,7 @@ namespace IExtreme::Engine::Ugr
 		Logger::Info("Init Game States");
 		this->states.push(new Application::TWarior::Game(this->evar));
 		Logger::Info("Done!");
-		this->setFramerateLimit(60);
+		this->setFramerateLimit(0);
 	}
 	void Engine::run()
 	{
