@@ -2,8 +2,6 @@
 #define FONTSIZE 32156
 #include <SFML/Graphics/Font.hpp>
 
-
-sf::Font font;
+extern sf::Font sysDefaultFont;
 void InitFont();
-
 unsigned char fontData[];

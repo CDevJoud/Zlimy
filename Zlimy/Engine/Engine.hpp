@@ -7,6 +7,7 @@
 #include "..\Game.hpp"
 #include "SFML/GpuPreference.hpp"
 #include "SFML/System/Err.hpp"
+#include "FPSCounter.hpp"
 
 #define NULLSIZE 459
 namespace IExtreme::Engine::Ugr
@@ -30,7 +31,7 @@ namespace IExtreme::Engine::Ugr
 
 		Evar* evar = new Evar();
 
-		
+		FPSCounter fps;
 	};
 }
 

@@ -6,12 +6,12 @@ class FPSCounter : public sf::Drawable
 public:
 	FPSCounter();
 
-	void Update(const sf::Time& dt);
+	void Update();
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 private:
 	int frameCount;
 	int fps;
-	sf::Time eTime;
+	sf::Clock eTime;
 	sf::Text text;
 };

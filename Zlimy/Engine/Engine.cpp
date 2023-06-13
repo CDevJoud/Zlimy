@@ -68,12 +68,14 @@ namespace IExtreme::Engine::Ugr
 	{
 		if (!this->states.empty())
 			this->states.top()->OnUserUpdate(this->restart());
+		this->fps.Update();
 	}
 	void Engine::Render()
 	{
 		this->clear();
 		if (!this->states.empty())
 			this->states.top()->Render();
+		this->draw(this->fps);
 		this->display();
 	}
 	void Engine::HandleEvent()
