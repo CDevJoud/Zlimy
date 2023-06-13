@@ -93,6 +93,14 @@ namespace IExtreme::Engine::Ugr
 	class Entity : public sf::Drawable
 	{
 	public:
+		struct Animation
+		{
+			sf::IntRect rect;
+			sf::Uint8 frames;
+			float coolDown;
+			sf::Texture* texture;
+		};
+
 		enum Proprety
 		{
 			Static = 0, Dynamic
@@ -105,6 +113,9 @@ namespace IExtreme::Engine::Ugr
 		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 		bool LoadTexture(std::string file);
+		void AddAnimation(std::string aniName, Animation* animation, bool fullTexture = false);
+		void ResetAnimation(std::string aniName);
+		void PlayAnimation(std::string aniName);
 
 		void SetSize(sf::Vector2f size);
 		void SetSize(float x, float y);
@@ -142,6 +153,8 @@ namespace IExtreme::Engine::Ugr
 		friend class World;
 		bool IsCollidingToGround = false;
 	private:
+		std::map<std::string, Animation> animations;
+		sf::Clock coolDown;
 		sf::RectangleShape sprite;
 		sf::Texture* texture;
 		sf::Vector2f velocity;
@@ -149,7 +162,6 @@ namespace IExtreme::Engine::Ugr
 		HitBox hitBox;
 		Proprety prop;
 		bool UpdatePollGravitation = true;
-		sf::Image tmpImage;
 	private:
 		sf::Uint8 NullData[NULLSIZE] = {
 	0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00, 0x00, 0x0D,

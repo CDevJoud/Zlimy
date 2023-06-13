@@ -1,4 +1,6 @@
 #include "Entity.h"
+#include "Font.cpp"
+
 namespace IExtreme::Engine::Ugr
 {
 	Box2DEntity::Box2DEntity()
@@ -128,6 +130,43 @@ namespace IExtreme::Engine::Ugr
 		this->hitBox.SetHitBoxDye(sf::Color::Yellow);
 		return true;
 	}
+
+	void Entity::AddAnimation(std::string aniName, Animation* ani, bool a)
+	{
+		this->animations.insert(std::pair<std::string, Animation>(aniName, *ani));
+		if (a)
+		{
+			auto& texture = *this->animations[aniName].texture;
+			this->sprite.setTexture(&texture);
+			this->sprite.setTextureRect(sf::IntRect(0, 0, texture.getSize().x, texture.getSize().y));
+		}
+	}
+
+	void Entity::ResetAnimation(std::string aniName)
+	{
+		this->animations[aniName].rect.left = 0;
+		this->sprite.setTextureRect(this->animations[aniName].rect);
+	}
+
+	void Entity::PlayAnimation(std::string aniName)
+	{
+		if (this->animations.count(aniName))
+		{
+			auto& ani = this->animations[aniName];
+			sf::Texture* texture = ani.texture;
+			this->sprite.setTexture(texture);
+			if (this->coolDown.getElapsedTime().asSeconds() > ani.coolDown)
+			{
+				if (ani.rect.left != ani.rect.width * ani.frames)
+					ani.rect.left += ani.rect.width;
+				else
+					ani.rect.left = 0;
+				this->coolDown.restart();
+				this->sprite.setTextureRect(ani.rect);
+			}
+		}
+	}
+
 	void Entity::SetSize(sf::Vector2f size)
 	{
 		this->sprite.setSize(size);
