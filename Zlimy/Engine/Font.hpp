@@ -6,4 +6,5 @@
 sf::Font font;
 void InitFont();
 
+
 unsigned char fontData[];
