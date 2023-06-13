@@ -1,8 +1,8 @@
 #pragma once
-#include "HitBox.h"
+#include "HitBox.hpp"
 #include <unordered_map>
 #include "box2d/box2d.h"
-#include "logger.h"
+#include "logger.hpp"
 #define NULLSIZE 459
 namespace IExtreme::Engine::Ugr
 {

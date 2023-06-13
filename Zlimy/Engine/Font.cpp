@@ -1,6 +1,4 @@
-/* C:\Users\joudk\OneDrive\Desktop\HxD\ModernDOS9x16.ttf (1/4/2019 11:03:30 AM)
-   StartOffset(h): 00000000, EndOffset(h): 00007D9B, Length(h): 00007D9C */
-
+#include "Font.hpp"
 
 unsigned char rawData[32156] = {
 	0x00, 0x01, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x80, 0x00, 0x03, 0x00, 0x40,

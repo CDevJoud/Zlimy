@@ -1,7 +1,7 @@
 #pragma once
 #include <box2d/box2d.h>
-#include "Entity.h"
-#include "logger.h"
+#include "Entity.hpp"
+#include "logger.hpp"
 namespace IExtreme::Engine::Ugr
 {
 	class World : public sf::Drawable

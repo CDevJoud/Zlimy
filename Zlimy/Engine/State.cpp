@@ -1,4 +1,4 @@
-#include "State.h"
+#include "State.hpp"
 namespace IExtreme::Engine::Ugr
 {
 	bool State::getQuit() const

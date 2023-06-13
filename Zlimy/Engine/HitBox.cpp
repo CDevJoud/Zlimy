@@ -1,4 +1,4 @@
-#include "HitBox.h"
+#include "HitBox.hpp"
 namespace IExtreme::Engine::Ugr
 {
 	HitBox::HitBox()

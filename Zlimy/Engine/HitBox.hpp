@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "logger.h"
+#include "logger.hpp"
 namespace IExtreme::Engine::Ugr
 {
 	class HitBox : public sf::Drawable
