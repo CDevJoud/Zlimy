@@ -1,10 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "State.h"
+#include "State.hpp"
 #include <stack>
 #include "Utility.hpp"
-#include "logger.h"
-#include "..\Game.h"
+#include "logger.hpp"
+#include "..\Game.hpp"
 #include "SFML/GpuPreference.hpp"
 #include "SFML/System/Err.hpp"
 
