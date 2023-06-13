@@ -1,7 +1,7 @@
 #pragma once
-#include "Engine/State.h"
-#include "Engine/Entity.h"
-#include "Engine/World.h"
+#include "Engine/State.hpp"
+#include "Engine/Entity.hpp"
+#include "Engine/World.hpp"
 #include "Engine/Utility.hpp"
 
 namespace IExtreme::Application::TWarior
