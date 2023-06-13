@@ -2,6 +2,7 @@
 
 FPSCounter::FPSCounter()
 {
+
 	this->frameCount = 0;
 	this->fps = 0;
 	this->eTime = sf::Time::Zero;

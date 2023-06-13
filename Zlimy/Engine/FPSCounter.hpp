@@ -10,6 +10,7 @@ public:
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 private:
+
 	int frameCount;
 	int fps;
 	sf::Time eTime;
