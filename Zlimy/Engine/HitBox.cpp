@@ -101,35 +101,13 @@ namespace IExtreme::Engine::Ugr
 		{
 			if (inx > iny)
 			{
-				if (dx < 0.0f)
-				{
-					tmp.IsCollidingFromLeft = true;
-				}
-				else
-					tmp.IsCollidingFromLeft = false;
-
-				if (dx > 0.0f)
-				{
-					tmp.IsCollidingFromRight = true;
-				}
-				else
-					tmp.IsCollidingFromRight = false;
+				if (dx < 0.0f) tmp.IsCollidingFromLeft = true; else tmp.IsCollidingFromLeft = false;
+				if (dx > 0.0f) tmp.IsCollidingFromRight = true; else tmp.IsCollidingFromRight = false;
 			}
 			else
 			{
-				if (dy > 0.0f)
-				{
-					tmp.IsCollidingFromTop = true;
-				}
-				else
-					tmp.IsCollidingFromTop = false;
-
-				if (dy < 0.0f)
-				{
-					tmp.IsCollidingFromBottom = true;
-				}
-				else
-					tmp.IsCollidingFromBottom = false;
+				if (dy > 0.0f) tmp.IsCollidingFromTop = true; else tmp.IsCollidingFromTop = false;
+				if (dy < 0.0f) tmp.IsCollidingFromBottom = true; else tmp.IsCollidingFromBottom = false;
 			}
 		}
 		this->collider = tmp;
