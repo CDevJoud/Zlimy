@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\Font.cpp" />
     <ClCompile Include="Engine\Utility.cpp" />
     <ClCompile Include="Engine\logger.cpp" />
     <ClCompile Include="Engine\Entity.cpp" />
@@ -156,15 +157,15 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\State.cpp" />
     <ClCompile Include="Engine\World.cpp" />
-    <ClCompile Include="TestCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\Engine.hpp" />
     <ClInclude Include="Engine\Utility.hpp" />
     <ClInclude Include="Engine\State.h" />
     <ClInclude Include="Engine\EVar.h" />
     <ClInclude Include="Engine\logger.h" />
     <ClInclude Include="Engine\Entity.h" />
+    <ClInclude Include="Engine\Font.hpp" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Engine\HitBox.h" />
     <ClInclude Include="Engine\World.h" />
