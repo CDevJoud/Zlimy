@@ -156,6 +156,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\State.cpp" />
     <ClCompile Include="Engine\World.cpp" />
+    <ClCompile Include="TestCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h" />
