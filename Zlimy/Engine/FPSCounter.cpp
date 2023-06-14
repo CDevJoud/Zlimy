@@ -2,11 +2,11 @@
 
 namespace IExtreme::Engine::Ugr
 {
-	FPSCounter::FPSCounter()
+	FPSCounter::FPSCounter(sf::Font* font)
 	{
 		this->frameCount = 0;
 		this->fps = 0;
-		this->text.setFont(sysDefaultFont);
+		this->text.setFont(*font);
 		this->text.setCharacterSize(20);
 		this->text.setFillColor(sf::Color::Red);
 		this->text.setPosition(10.f, 10.f);
@@ -22,6 +22,11 @@ namespace IExtreme::Engine::Ugr
 			eTime.restart();
 		}
 		this->text.setString("FPS: " + std::to_string(this->fps));
+	}
+
+	void FPSCounter::SetFont(sf::Font* font)
+	{
+		this->text.setFont(*font);
 	}
 
 	void FPSCounter::draw(sf::RenderTarget& target, sf::RenderStates states) const
