@@ -1,5 +1,4 @@
 #include "Entity.hpp"
-#include "Font.cpp"
 
 namespace IExtreme::Engine::Ugr
 {
