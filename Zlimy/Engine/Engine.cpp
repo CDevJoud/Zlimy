@@ -4,6 +4,10 @@ namespace IExtreme::Engine::Ugr
 {
 	Engine::Engine()
 	{
+		sf::Font* tmpFont = new sf::Font();
+		tmpFont->loadFromFile("Assets/Fonts/SysDefFont.ttf");
+		this->fps.SetFont(tmpFont);
+
 		Logger::Init();
 		Logger::Logging(true);
 		Logger::SetPriority(Logger::LogPriority::Trace);
@@ -24,7 +28,7 @@ namespace IExtreme::Engine::Ugr
 		Logger::Info("Setting Up Resource Files");
 		this->evar->target = this;
 		this->evar->window = this;
-		Logger::Info("Done!");
+ 		Logger::Info("Done!");
 
 		Logger::Info("Init Game States");
 		this->states.push(new Application::TWarior::Game(this->evar));
