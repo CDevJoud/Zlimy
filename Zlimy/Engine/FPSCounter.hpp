@@ -1,17 +1,20 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Font.hpp"
-class FPSCounter : public sf::Drawable
+namespace IExtreme::Engine::Ugr
 {
-public:
-	FPSCounter();
+	class FPSCounter : public sf::Drawable
+	{
+	public:
+		FPSCounter();
 
-	void Update();
+		void Update();
 
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-private:
-	int frameCount;
-	int fps;
-	sf::Clock eTime;
-	sf::Text text;
-};
+		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	private:
+		int frameCount;
+		int fps;
+		sf::Clock eTime;
+		sf::Text text;
+	};
+}
