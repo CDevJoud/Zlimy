@@ -109,6 +109,7 @@ namespace IExtreme::Engine::Ugr
 	{
 		target.draw(this->sprite);
 		target.draw(this->hitBox);
+		target.draw(this->nametag);
 	}
 	bool Entity::LoadTexture(std::string file)
 	{
@@ -178,6 +179,7 @@ namespace IExtreme::Engine::Ugr
 	}
 	void Entity::SetPosition(sf::Vector2f pos)
 	{
+		
 		this->hitBox.SetPosition(pos.x, pos.y);
 		this->sprite.setPosition(pos);
 	}
@@ -268,6 +270,12 @@ namespace IExtreme::Engine::Ugr
 	}
 	void Entity::Update(const sf::Time& dt)
 	{
+		sf::FloatRect posrect = this->sprite.getGlobalBounds();
+		this->nametag->setPosition(posrect.left + posrect.width * 0.5f, posrect.top);
+
+		sf::FloatRect orgrect = this->nametag->getGlobalBounds();
+		this->nametag->setOrigin(orgrect.width * 0.5f, orgrect.height * 0.5f);
+
 		this->velocity.y += 500.82 * dt.asSeconds();
 		sf::Vector2f pos = this->GetPosition();
 
@@ -293,5 +301,9 @@ namespace IExtreme::Engine::Ugr
 	sf::Vector2f Entity::GetVelocity() const
 	{
 		return this->velocity;
+	}
+	NameTag& Entity::GetNameTag()
+	{
+		return this->nametag;
 	}
 }

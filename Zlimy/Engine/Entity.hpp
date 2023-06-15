@@ -2,6 +2,7 @@
 #include "HitBox.hpp"
 #include <unordered_map>
 #include "box2d/box2d.h"
+#include "NameTag.hpp"
 #include "logger.hpp"
 #define NULLSIZE 459
 namespace IExtreme::Engine::Ugr
@@ -28,6 +29,7 @@ namespace IExtreme::Engine::Ugr
 		b2Body* GetBody();
 		void SetBody(b2Body* body);
 		sf::Vector2f GetSize() const;
+		
 
 		Proprety prop;
 		int ID = 0;
@@ -41,6 +43,8 @@ namespace IExtreme::Engine::Ugr
 		void UpdateTransformation();
 	private:
 		friend class World;
+		
+		NameTag name;
 		sf::Sprite sprite;
 		sf::Texture* texture = new sf::Texture();
 		std::unordered_map<std::string, HitBox> hitBoxes;
@@ -136,6 +140,7 @@ namespace IExtreme::Engine::Ugr
 		sf::Vector2f GetScale() const;
 		sf::Vector2f GetSize() const;
 		sf::Vector2f GetVelocity() const;
+		NameTag& GetNameTag();
 		float GetRotation() const;
 
 		void Move(sf::Vector2f offset);
@@ -162,6 +167,7 @@ namespace IExtreme::Engine::Ugr
 		HitBox hitBox;
 		Proprety prop;
 		bool UpdatePollGravitation = true;
+		NameTag nametag;
 	private:
 		sf::Uint8 NullData[NULLSIZE] = {
 	0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00, 0x00, 0x0D,
