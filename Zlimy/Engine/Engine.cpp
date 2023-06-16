@@ -7,6 +7,7 @@ namespace IExtreme::Engine::Ugr
 		sf::Font* tmpFont = new sf::Font();
 		tmpFont->loadFromFile("Assets/Fonts/SysDefFont.ttf");
 		this->fps.SetFont(tmpFont);
+		this->evar->fonts.insert(std::pair<std::string, sf::Font*>("System.Default.Font", tmpFont));
 
 		Logger::Init();
 		Logger::Logging(true);
@@ -41,7 +42,7 @@ namespace IExtreme::Engine::Ugr
 		this->OnUserCreate();
 		Logger::Info("Done!");
 		this->OnUserUpdate();
-	}
+ 	}
 	void Engine::OnUserCreate()
 	{
 		Logger::Debug("Calling \"OnUserCreate()\" Function");
@@ -92,6 +93,10 @@ namespace IExtreme::Engine::Ugr
 			if (!this->states.empty())
 				this->states.top()->HandleEvent(event);
 		}
+	}
+	void Engine::Clean()
+	{
+		this->evar->fonts.clear();
 	}
 	void Engine::ManageStates(State::ReturnExitValue v)
 	{

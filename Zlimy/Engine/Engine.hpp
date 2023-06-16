@@ -26,6 +26,8 @@ namespace IExtreme::Engine::Ugr
 		void Render();
 		void HandleEvent();
 
+		void Clean();
+
 		void ManageStates(State::ReturnExitValue v);
 		std::stack<State*> states;
 
