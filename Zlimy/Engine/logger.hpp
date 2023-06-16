@@ -172,8 +172,8 @@ namespace IExtreme::Engine::Ugr
 					Color::SetColor(0x04);
 					break;
 				case IExtreme::Engine::Ugr::Logger::LogPriority::Fatal:
-					Color::Color(L"| \x2716 | -- ", 0xC4);
-					Color::SetColor(0xC4);
+					Color::Color(L"| \x2716 | -- ", 0x4C);
+					Color::SetColor(0x4C);
 					break;
 				default:
 					break;
