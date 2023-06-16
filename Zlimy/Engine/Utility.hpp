@@ -2,12 +2,15 @@
 #include "zlib.h"
 #include <vector>
 #include <string>
+#include <fstream>
+#include "logger.hpp"
+#include <SFML/System/Clock.hpp>
 
 namespace IExtreme::Engine::Ugr
 {
-	void compress(std::string in, std::string& out);
-	void decompress(std::string in, std::string& out);
-
+	void Compress(std::string in, std::string& out);
+	void Decompress(std::string in, std::string& out);
+	void CompileRecourceFile(std::string in, std::string out, const char* outFileName);
 	class ID
 	{
 	public:
