@@ -5,4 +5,5 @@ struct Evar
 	sf::RenderTarget* target = nullptr;
 	sf::Window* window = nullptr;
 	std::map<std::string, sf::Font*> fonts;
+	std::map<std::string, sf::Texture*> textures;
 };
