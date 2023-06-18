@@ -8,6 +8,8 @@
 #include "SFML/GpuPreference.hpp"
 #include "SFML/System/Err.hpp"
 #include "FPSCounter.hpp"
+#include "json.hpp"
+#include <fstream>
 
 #define NULLSIZE 459
 namespace IExtreme::Engine::Ugr
@@ -25,6 +27,8 @@ namespace IExtreme::Engine::Ugr
 		void Update();
 		void Render();
 		void HandleEvent();
+
+		void ParseJson();
 
 		void Clean();
 

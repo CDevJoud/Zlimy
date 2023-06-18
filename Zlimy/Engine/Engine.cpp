@@ -4,14 +4,15 @@ namespace IExtreme::Engine::Ugr
 {
 	Engine::Engine()
 	{
-		sf::Font* tmpFont = new sf::Font();
-		tmpFont->loadFromFile("Assets/Fonts/SysDefFont.ttf");
-		this->fps.SetFont(tmpFont);
-		this->evar->fonts.insert(std::pair<std::string, sf::Font*>("System.Default.Font", tmpFont));
+		
 
 		Logger::Init();
 		Logger::Logging(true);
 		Logger::SetPriority(Logger::LogPriority::Trace);
+
+		Ugr::CompileRecourceFile("data.json", "data", ".ugr.tablet");
+
+		this->ParseJson();
 
 		sf::ContextSettings s;
 		s.antialiasingLevel = 8;
@@ -19,6 +20,7 @@ namespace IExtreme::Engine::Ugr
 		sf::err().clear(std::ios::failbit);
 
 		this->create(sf::VideoMode::getDesktopMode(), "Warior", sf::Style::Fullscreen, s);
+		
 		
 		std::string out = "Init Warior Game With " + std::to_string(sf::VideoMode::getDesktopMode().width) + "x" + std::to_string(sf::VideoMode::getDesktopMode().height) + "With FullScreen Mode";
 		Logger::Info(out.c_str());
@@ -33,6 +35,7 @@ namespace IExtreme::Engine::Ugr
 
 		Logger::Info("Init Game States");
 		this->states.push(new Application::TWarior::Game(this->evar));
+		this->fps.SetFont(this->evar->fonts["System.Font.Default"]);
 		Logger::Info("Done!");
 		this->setFramerateLimit(0);
 	}
@@ -88,10 +91,63 @@ namespace IExtreme::Engine::Ugr
 		sf::Event event{};
 		while (this->pollEvent(event))
 		{
-			/*if (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-				this->close();*/
 			if (!this->states.empty())
 				this->states.top()->HandleEvent(event);
+		}
+	}
+	void Engine::ParseJson()
+	{
+		std::ifstream file("data.ugr.tablet", std::ios::binary);
+		if (file.is_open())
+		{
+			std::vector<sf::Uint8> buffer;
+			std::vector<sf::Uint8> UgrTabdata(std::istreambuf_iterator<char>(file), {});
+
+			Decompress(UgrTabdata, buffer);
+			nlohmann::json data = nlohmann::json::parse(buffer);
+			if (data["Version"] != "1.0.0")
+			{
+				Logger::Error("Unsupportable Resource File Version");
+				exit(-100);
+			}
+			else
+			{
+				if (data["Textures"].is_object())
+				{
+					for (auto& textelements : data["Textures"].items())
+					{
+						if (data["Textures"][textelements.key()].is_string())
+						{
+							sf::Texture* tmp = new sf::Texture();
+							std::string path = data["Textures"][textelements.key()];
+							std::string key  = textelements.key();
+							tmp->loadFromFile(path);
+							this->evar->textures.insert(std::pair<std::string, sf::Texture*>(key, tmp));
+						}
+					}
+				}
+				if (data["Fonts"].is_object())
+				{
+					for (auto& fontselements : data["Fonts"].items())
+					{
+						if (data["Fonts"][fontselements.key()].is_string())
+						{
+							sf::Font* tmp = new sf::Font();
+							std::string path = data["Fonts"][fontselements.key()];
+							std::string key  = fontselements.key();
+							tmp->loadFromFile(path);
+							this->evar->fonts.insert(std::pair < std::string, sf::Font*>(key, tmp));
+						}
+					}
+				}
+			}
+			file.close();
+		}
+		else
+		{
+			Logger::Fatal("Ugarit Engine could not find the resource data file: data.ugr.tablet.\n\t The file went missing! Terminating immediately!");
+			exit(-1);
+			file.close();
 		}
 	}
 	void Engine::Clean()
