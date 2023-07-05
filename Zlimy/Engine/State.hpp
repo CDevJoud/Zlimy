@@ -5,7 +5,7 @@ namespace IExtreme::Engine::Ugr
 	class State
 	{
 	public:
-		State(Evar* var) : target(var->target), window(var->window), fonts(var->fonts), textures(var->textures) {}
+		State(Evar* var) : target(var->target), window(var->window), fonts(var->fonts), textures(var->textures), ani(var->animations) {}
 
 		enum class ReturnExitValue
 		{
@@ -25,6 +25,7 @@ namespace IExtreme::Engine::Ugr
 		sf::Window* window = nullptr;
 		std::map<std::string, sf::Font*> fonts;
 		std::map<std::string, sf::Texture*> textures;
+		std::map<std::string, Entity::Animation*> ani;
 		bool quit = false;
 	};
 }

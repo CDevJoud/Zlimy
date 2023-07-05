@@ -3,8 +3,7 @@ using namespace IExtreme::Engine;
 
 int main()
 {
-	InitFont();
-	Ugr::Engine e; 
+	Ugr::Engine e;
 	e.run();
-	return 0;
+    return 0;
 }

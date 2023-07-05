@@ -1,0 +1,62 @@
+{
+  "Version": "1.0.0",
+  "Textures": {
+    "Entity.Player.Death": "Assets/player/Death.png",
+    "Entity.Player.Jump": "Assets/player/Jump.png",
+    "Entity.Player.Idle": "Assets/Player/Idle.png",
+    "Entity.Player.Run": "Assets/Player/run.png",
+    "Entity.Player.Attack": "Assets/Player/run.png",
+    "Entity.Block.Ground": "Ground.png"
+  },
+  "Fonts": {
+    "System.Font.Default": "Assets/Fonts/SysDefFont.ttf",
+    "System.Font.First-Job": "Assets/Fonts/FirstJob.ttf"
+  },
+  "Animations": {
+    "Animation.Player.Idle": {
+      "Src": "Entity.Player.Idle",
+      "CoolDown": 0.1,
+      "AmountFrames": 8,
+      "Frames": [
+        {"left": 0, "top": 0, "width": 128, "height": 64},
+        {"left": 128, "top": 0, "width": 128, "height": 64},
+        {"left": 0, "top": 64, "width": 128, "height": 64},
+        {"left": 128, "top": 64, "width": 128, "height": 64},
+        {"left": 0, "top": 128, "width": 128, "height": 64},
+        {"left": 128, "top": 128, "width": 128, "height": 64},
+        {"left": 0, "top": 192, "width": 128, "height": 64},
+        {"left": 128, "top": 192, "width": 128, "height": 64}
+      ]
+    },
+    "Animation.Player.Run": {
+      "Src": "Entity.Player.Run",
+      "CoolDown": 0.1,
+      "AmountFrames": 8,
+      "Frames": [
+        {"left": 0, "top": 0, "width": 128, "height": 64},
+        {"left": 128, "top": 0, "width": 128, "height": 64},
+        {"left": 0, "top": 64, "width": 128, "height": 64},
+        {"left": 128, "top": 64, "width": 128, "height": 64},
+        {"left": 0, "top": 128, "width": 128, "height": 64},
+        {"left": 128, "top": 128, "width": 128, "height": 64},
+        {"left": 0, "top": 192, "width": 128, "height": 64},
+        {"left": 128, "top": 192, "width": 128, "height": 64}
+      ]
+    },
+    "Animation.Player.Jump": {
+      "Src": "Entity.Player.Jump",
+      "CoolDown": 0.05,
+      "AmountFrames": 8,
+      "Frames": [
+        {"left": 0, "top": 0, "width": 128, "height": 64},
+        {"left": 128, "top": 0, "width": 128, "height": 64},
+        {"left": 0, "top": 64, "width": 128, "height": 64},
+        {"left": 128, "top": 64, "width": 128, "height": 64},
+        {"left": 0, "top": 128, "width": 128, "height": 64},
+        {"left": 128, "top": 128, "width": 128, "height": 64},
+        {"left": 0, "top": 192, "width": 128, "height": 64},
+        {"left": 128, "top": 192, "width": 128, "height": 64}
+      ]
+    }
+  }
+}

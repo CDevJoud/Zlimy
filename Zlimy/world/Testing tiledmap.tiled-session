@@ -1,0 +1,71 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Envirnoment_Near.tsj",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "BackGround.tsj": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Envirnoment_Near.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
+        "Ground.tsj": {
+            "dynamicWrapping": false,
+            "scaleInDock": 3,
+            "scaleInEditor": 3
+        },
+        "Walls_Near.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 2
+        },
+        "world.tmj": {
+            "expandedGroupLayers": [
+                5
+            ],
+            "scale": 4,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 97.5,
+                "y": 166.875
+            }
+        }
+    },
+    "last.imagePath": "C:/Users/joudk/OneDrive - Uppsala kommun/CPP project/Zlimy/Zlimy/Assets/world",
+    "map.lastUsedFormat": "json",
+    "map.layerDataFormat": null,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 40,
+    "openFiles": [
+        "Ground.tsj",
+        "world.tmj",
+        "Envirnoment_Near.tsj",
+        "Walls_Near.tsj"
+    ],
+    "project": "Testing tiledmap.tiled-project",
+    "property.type": "object",
+    "recentFiles": [
+        "Ground.tsj",
+        "world.tmj",
+        "Walls_Near.tsj",
+        "Envirnoment_Near.tsj",
+        "BackGround.tsj"
+    ],
+    "tileset.lastUsedFormat": "json",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.type": 0
+}

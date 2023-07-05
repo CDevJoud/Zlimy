@@ -1,47 +1,56 @@
-#include "Game.h"
+#include "Game.hpp"
 
 namespace IExtreme::Application::TWarior
 {
 	void Game::OnUserCreate()
 	{
-		this->player2->ID = Ugr::ID::GenerateID();
-		this->player2->SetPosition(1920 * 0.5, 900);
-		this->player2->LoadTexture("Ground.png");
-		this->player2->SetProprety(Ugr::Entity::Static);
-		this->player2->SetSize(1920, 100);
-		this->player2->SetOrigin(this->player2->GetSize() * 0.5f);
-		this->world.AddEntity(this->player2);
+		this->ground->ID = Ugr::ID::GenerateID();
+		this->ground->SetPosition(1920 * 0.5, 900);
+		this->ground->SetTexture(this->textures["Entity.Block.Ground"]);
+		this->ground->SetProprety(Ugr::Entity::Static);
+		this->ground->SetSize(1920, 100);
+		this->ground->SetOrigin(this->ground->GetSize() * 0.5f);
+		this->world.AddEntity(this->ground);
 
-
-		Ugr::Entity::Animation* animation = new Ugr::Entity::Animation();
-		animation->texture = new sf::Texture();
-		animation->texture->loadFromFile("Assets/64x128_Idle_Free.png");
-		animation->rect = sf::IntRect(0, 0, 64 * 7, 128 * 3);
-		animation->frames = 7;
-		animation->coolDown = 0.05f;
-		this->player1->AddAnimation("Player-Running", animation, true);
-		this->player1->ID = Ugr::ID::GenerateID();
-		this->player1->SetProprety(Ugr::Entity::Dynamic);
-		this->player1->SetPosition(1920 * 0.5, 0);
-		this->player1->SetSize(64*7, 128*4);
-		this->player1->SetOrigin(this->player1->GetSize() * 0.5f);
-		this->player1->GetHitBox()->SetHitBoxSize(256, 380);
-		this->player1->GetHitBox()->SetOrigin(128, 380 * 0.5f);
-		this->player1->GetHitBox()->SetHitBoxThickness(0);
-		this->world.AddEntity(this->player1);
+		this->player->AddAnimation(this->ani["Animation.Player.Idle"]);
+		this->player->AddAnimation(this->ani["Animation.Player.Run"]);
+		this->player->AddAnimation(this->ani["Animation.Player.Jump"]);
+		this->player->ID = Ugr::ID::GenerateID();
+		this->player->SetProprety(Ugr::Entity::Dynamic);
+		this->player->SetPosition(1920 * 0.5, 0);
+		this->player->SetSize(512, 256);
+		this->player->SetOrigin(this->player->GetSize() * 0.5f);
+		this->player->GetHitBox()->SetHitBoxSize(256, 250);
+		this->player->GetHitBox()->SetOrigin(128, 250 * 0.5f);
+		this->player->GetHitBox()->SetHitBoxThickness(0);
+		this->player->GetNameTag()->setFont(*this->fonts["System.Font.First-Job"]);
+		this->player->GetNameTag()->setString("Steve");
+		this->player->GetNameTag()->setCharacterSize(30);
+		this->player->GetNameTag()->setFillColor(sf::Color::Blue);
+		this->world.AddEntity(this->player);
 	}
 	void Game::OnUserUpdate(const sf::Time& dt)
 	{
-		//this->player1->PlayAnimation("Player-Running");
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) 
- 			this->player1->SetVelocity(0, -300);
+		auto& col = this->player->GetHitBox()->collider;
 
-		auto& col = this->player1->GetHitBox()->collider;
+		/*this->player->PlayAnimation("Animation.Player.Idle");*/
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) this->player1->Move(-500 * dt.asSeconds(), 0);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) this->player1->Move( 500 * dt.asSeconds(), 0);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) this->player1->Move(0, -500 * dt.asSeconds());
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !col.IsCollidingFromTop) this->player1->Move( 0, 500 * dt.asSeconds());
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && col.IsCollidingFromTop)
+		{
+			this->player->SetVelocity(0, -600);
+			this->player->PlayAnimation("Animation.Player.Jump");
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) this->player->Move(-500 * dt.asSeconds(), 0);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			this->player->PlayAnimation("Animation.Player.Run");
+			this->player->Move(500 * dt.asSeconds(), 0);
+		}
+		else
+			this->player->PlayAnimation("Animation.Player.Idle");
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) this->player->Move(0, -500 * dt.asSeconds());
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !col.IsCollidingFromTop) this->player->Move( 0, 500 * dt.asSeconds());
 		this->world.Update(dt);
 	}
 	void Game::Render()

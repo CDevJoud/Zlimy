@@ -20,8 +20,9 @@ namespace IExtreme::Application::TWarior
 		Ugr::State::ReturnExitValue ExitValue();
 	private:
 		Ugr::State::ReturnExitValue val;
-		Ugr::Entity* player1 = new Ugr::Entity();
-		Ugr::Entity* player2 = new Ugr::Entity();
+		Ugr::Entity* player = new Ugr::Entity();
+		Ugr::Entity* ground = new Ugr::Entity();
+		
 		Ugr::World world;
 	};
 }
