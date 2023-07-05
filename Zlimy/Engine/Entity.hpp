@@ -99,8 +99,11 @@ namespace IExtreme::Engine::Ugr
 	public:
 		struct Animation
 		{
+			std::vector<sf::IntRect> frames;
+			std::string aniName;
 			sf::IntRect rect;
-			sf::Uint8 frames;
+			sf::Uint16 currentFrame = 0;
+			sf::Uint8 amountFrames;
 			float coolDown;
 			sf::Texture* texture;
 		};
@@ -116,8 +119,9 @@ namespace IExtreme::Engine::Ugr
 
 		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+		void SetTexture(sf::Texture* texture);
 		bool LoadTexture(std::string file);
-		void AddAnimation(std::string aniName, Animation* animation, bool fullTexture = false);
+		void AddAnimation(Animation* animation, bool fullTexture = false);
 		void ResetAnimation(std::string aniName);
 		void PlayAnimation(std::string aniName);
 

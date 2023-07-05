@@ -111,6 +111,10 @@ namespace IExtreme::Engine::Ugr
 		target.draw(this->hitBox);
 		target.draw(this->nametag);
 	}
+	void Entity::SetTexture(sf::Texture* texture)
+	{
+		this->sprite.setTexture(texture);
+	}
 	bool Entity::LoadTexture(std::string file)
 	{
 		std::string str = "Loading File: " + file;
@@ -131,12 +135,13 @@ namespace IExtreme::Engine::Ugr
 		return true;
 	}
 
-	void Entity::AddAnimation(std::string aniName, Animation* ani, bool a)
+	void Entity::AddAnimation(Animation* ani, bool a)
 	{
-		this->animations.insert(std::pair<std::string, Animation>(aniName, *ani));
-		if (a)
+		std::string key = ani->aniName;
+		this->animations.insert(std::pair<std::string, Animation>(key, *ani));
+ 		if (a)
 		{
-			auto& texture = *this->animations[aniName].texture;
+			auto& texture = *this->animations[key].texture;
 			this->sprite.setTexture(&texture);
 			this->sprite.setTextureRect(sf::IntRect(0, 0, texture.getSize().x, texture.getSize().y));
 		}
@@ -150,6 +155,7 @@ namespace IExtreme::Engine::Ugr
 
 	void Entity::PlayAnimation(std::string aniName)
 	{
+
 		if (this->animations.count(aniName))
 		{
 			auto& ani = this->animations[aniName];
@@ -157,12 +163,17 @@ namespace IExtreme::Engine::Ugr
 			this->sprite.setTexture(texture);
 			if (this->coolDown.getElapsedTime().asSeconds() > ani.coolDown)
 			{
-				if (ani.rect.left != ani.rect.width * ani.frames)
+				
+				/*if (ani.rect.left != ani.rect.width * ani.amountFrames)
 					ani.rect.left += ani.rect.width;
 				else
-					ani.rect.left = 0;
+					ani.rect.left = 0;*/
+				if (ani.currentFrame >= ani.amountFrames)
+					ani.currentFrame = 0;
+
 				this->coolDown.restart();
-				this->sprite.setTextureRect(ani.rect);
+  				this->sprite.setTextureRect(ani.frames[ani.currentFrame]);
+				ani.currentFrame++;
 			}
 		}
 	}
